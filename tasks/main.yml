@@ -1,0 +1,25 @@
+- name: Obtaining location of the user's home directory
+  ansible.builtin.user:
+    name: "{{ get_checkout_user }}"
+  register: user_info
+
+- name: Calculating path for directory to hold the checkout
+  ansible.builtin.set_fact:
+    git_checkout_path: "{{ git_checkout_base | default(user_info.home) }}/git"
+
+- name: Creating directory to hold git checkouts
+  ansible.builtin.file:
+    path: "{{ git_checkout_path }}"
+    state: directory
+    owner: "{{ git_checkout_dir_user }}"
+    group: "{{ git_checkout_dir_group }}"
+    mode: "{{ git_checkout_dir_mode }}"
+
+- name: Checking out the configs repo
+  become: true
+  become_user: "{{ git_checkout_user }}"
+  ansible.builtin.git:
+    repo: "{{ git_checkout_repo }}"
+    dest: "{{ git_checkout_path }}/config"
+    refspec: "{{ git_checkout_refspec | default(omit) }}"
+    version: "{{ git_checkout_refspec | default(omit) }}"

@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Adam
+  description: git_checkout - checkout a git repo as a specific user
+  license: MIT
+  company: none
+  min_ansible_version: "2.7"
+  platforms:
+    - name: Debian
+      versions:
+        - trixie
+  galaxy_tags:
+    - git
+    - checkout
+  role_name: git_checkout
+  namespace: hax0rbana_adam
+
+dependencies: []

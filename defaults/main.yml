@@ -1,0 +1,21 @@
+# The repo to check out
+git_checkout_repo: https://github.com/torvalds/linux.git
+# The refspec can be a SHA-1 commit hash, branch, or tag. If null or not
+# defined, this role will get the latest checkout, which breaks idempotentcy
+# git_checkout_refspec: "c03c1a14507dfaf8b856c2608f9ac216021fc222"
+# git_checkout_refspec: "7.3"
+# git_checkout_refspec: null
+
+# What user will we be when we check out the repo?
+git_checkout_user: user
+
+# If git_checkout_base is not defined, the user's home directory is used.
+# git_checkout_base:
+
+# Directory to checkout is appended to the git_checkout_base.
+git_checkout_dir: git
+
+# What user, group, and mode should be used for the checkout directory
+git_checkout_dir_user: "{{ git_checkout_user }}"
+git_checkout_dir_group: "{{ git_checkout_user }}"
+git_checkout_dir_mode: "700"
