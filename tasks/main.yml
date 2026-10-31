@@ -1,6 +1,6 @@
 - name: Obtaining location of the user's home directory
   ansible.builtin.user:
-    name: "{{ get_checkout_user }}"
+    name: "{{ git_checkout_user }}"
   register: user_info
 
 - name: Calculating path for directory to hold the checkout
